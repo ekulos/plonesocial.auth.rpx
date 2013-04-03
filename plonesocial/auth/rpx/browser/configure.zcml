@@ -85,12 +85,12 @@
         permission="zope.Public"
         />
 
-	<!-- RPX configlet -->
+	  <!-- RPX configlet -->
     <browser:page
-		for="Products.CMFPlone.Portal.PloneSite"
-		name="rpx_config"
-		class=".configlet.RPXConfigurationForm"
-		permission="cmf.ManagePortal"
+		  for="Products.CMFPlone.Portal.PloneSite"
+		  name="rpx_config"
+		  class=".configlet.RPXConfigurationForm"
+		  permission="cmf.ManagePortal"
 		/>
     <adapter factory=".configlet.RPXControlPanelAdapter" />
 

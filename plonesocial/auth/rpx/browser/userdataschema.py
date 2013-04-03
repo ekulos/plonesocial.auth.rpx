@@ -25,8 +25,37 @@ class IRPXUserDataSchema(Interface):
     """
     """
 
-    telephone = schema.ASCIILine(
-        title=rpxMessageFactory(u'label_rpx_telephone', default=u'Phone number'),
-        description=rpxMessageFactory(u'help_rpx_telephone',
-                      default=u"Enter your phone number"),
-        required=True)
+    company = schema.TextLine(
+        title=rpxMessageFactory(u'label_rpx_company', default=u'Company'),
+        description=rpxMessageFactory(u'help_rpx_company',
+                      default=u"Enter company name"),
+        required=True,
+    )
+
+    companyrole = schema.TextLine(
+        title=rpxMessageFactory(u'label_rpx_companyrole', default=u'Role'),
+        description=rpxMessageFactory(u'help_rpx_companyrole',
+                      default=u"Enter your role"),
+        required=True,
+    )
+
+    research_area = schema.TextLine(
+        title=rpxMessageFactory(u'label_rpx_research_area',
+                                                    default=u'Research Area'),
+        description=rpxMessageFactory(u'help_rpx_research_area',
+                      default=u"Enter research area"),
+        required=True,
+    )
+
+    keywords = schema.TextLine(
+        title=rpxMessageFactory(u'label_rpx_keywords', default=u'Keywords'),
+        description=rpxMessageFactory(u'help_rpx_keywords',
+                      default=u"Enter keywords")
+    )
+
+    multimedialinks = schema.TextLine(
+        title=rpxMessageFactory(u'label_rpx_multimedialinks',
+                                            default=u'Multimedia links'),
+        description=rpxMessageFactory(u'help_rpx_multimedialinks',
+                      default=u"Enter Multimedia links")
+    )

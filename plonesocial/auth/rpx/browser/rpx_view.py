@@ -22,7 +22,7 @@ class PASInfoView(BrowserView):
 
     def checkExtractorForInterface(self, interface):
         acl = getToolByName(aq_inner(self.context), "acl_users")
-        plugins=acl.plugins.listPlugins(IExtractionPlugin)
+        plugins = acl.plugins.listPlugins(IExtractionPlugin)
         for plugin in plugins:
             if interface.providedBy(plugin[1]):
                 return True
@@ -41,7 +41,6 @@ class PASInfoView(BrowserView):
         return self.checkExtractorForInterface(IRPXExtractionPlugin)
 
 
-
 class IRPXView(Interface):
     """
     rpx view interface
@@ -54,7 +53,8 @@ class IRPXView(Interface):
         """ set user's rpx identifier """
 
     def self_register_enabled(self):
-        """ return the enable_self_reg setting from plone_control_panel/security """
+        """ return the enable_self_reg setting """
+        """ from plone_control_panel/security """
 
     def rpx_identifier_is_unique():
         """ check if rpx id has not been added to a different user before """
@@ -69,7 +69,6 @@ class IRPXView(Interface):
         """ return a list of possible rpx providers """
 
 
-
 class RPXView(BrowserView):
     """
     rpx browser view
@@ -79,7 +78,8 @@ class RPXView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.props = getattr(queryUtility(IPropertiesTool), 'rpx_properties', None)
+        self.props = getattr(queryUtility(IPropertiesTool),
+                                                        'rpx_properties', None)
 
     @property
     def portal_catalog(self):
@@ -97,7 +97,7 @@ class RPXView(BrowserView):
     def lang(self):
         pl = getToolByName(self.context, 'portal_languages')
         return pl.getPreferredLanguage()[:2]
-    
+
     @property
     def rpx_is_configured(self):
         return self.domain and self.props.getProperty("api_key")
@@ -108,11 +108,11 @@ class RPXView(BrowserView):
 
     @property
     def popup_url(self):
-        return urlparse.urljoin(self.domain,"openid/v2/signin")
+        return urlparse.urljoin(self.domain, "openid/v2/signin")
 
     @property
     def embed_url(self):
-        return urlparse.urljoin(self.domain,"openid/embed")
+        return urlparse.urljoin(self.domain, "openid/embed")
 
     @property
     def rpx_token_url(self):
@@ -120,7 +120,8 @@ class RPXView(BrowserView):
 
     @property
     def providers(self):
-        return [Provider(pid) for pid in self.props.getProperty('providers', [])]
+        return [Provider(pid) for pid in self.props.getProperty(
+                                                            'providers', [])]
 
     @property
     def rpx_credentials(self):
@@ -146,7 +147,8 @@ class RPXView(BrowserView):
     def token_url(self, came_from=None):
         if came_from is None:
             came_from = self.context.absolute_url()
-        return '%s?came_from=%s' % (urllib.quote(self.rpx_token_url), came_from)
+        return '%s?came_from=%s' % (urllib.quote(self.rpx_token_url),
+                                                                    came_from)
 
     def set_identifier_to_member(self, member_id):
         if self.rpx_credentials:

@@ -1,16 +1,11 @@
-
 from zope.component import getUtility
 from zope.formlib import form
-
 from plone.app.users.userdataschema import IUserDataSchemaProvider
 from plone.app.users.browser.account import AccountPanelSchemaAdapter
 from plone.app.users.browser.personalpreferences import UserDataPanel
-
 from Products.CMFDefault.formlib.widgets import FileUploadWidget
 from Products.CMFPlone.utils import safe_unicode
-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
 from plonesocial.auth.rpx.browser.userdataschema import IRPXUserDataSchemaProvider
 
 
@@ -24,15 +19,52 @@ class RPXUserDataPanelAdapter(AccountPanelSchemaAdapter):
             return safe_unicode(value)
         return value
 
-    def get_telephone(self):
-        return self._getProperty('telephone')
+    def get_company(self):
+        return self._getProperty('company')
 
-    def set_telephone(self, value):
+    def set_company(self, value):
         if value is None:
             value = ''
-        return self.context.setMemberProperties({'telephone': value})
+        return self.context.setMemberProperties({'company': value})
 
-    telephone = property(get_telephone, set_telephone)
+    def get_companyrole(self):
+        return self._getProperty('companyrole')
+
+    def set_companyrole(self, value):
+        if value is None:
+            value = ''
+        return self.context.setMemberProperties({'companyrole': value})
+
+    def get_research_area(self):
+        return self._getProperty('research_area')
+
+    def set_research_area(self, value):
+        if value is None:
+            value = ''
+        return self.context.setMemberProperties({'research_area': value})
+
+    def get_keywords(self):
+        return self._getProperty('keywords')
+
+    def set_keywords(self, value):
+        if value is None:
+            value = ''
+        return self.context.setMemberProperties({'keywords': value})
+
+    def get_multimedialinks(self):
+        return self._getProperty('multimedialinks')
+
+    def set_multimedialinks(self, value):
+        if value is None:
+            value = ''
+        return self.context.setMemberProperties({'multimedialinks': value})
+
+    company = property(get_company, set_company)
+    companyrole = property(get_companyrole, set_companyrole)
+    research_area = property(get_research_area, set_research_area)
+    keywords = property(get_keywords, set_keywords)
+    multimedialinks = property(get_multimedialinks, set_multimedialinks)
+
 
 class RPXUserDataPanel(UserDataPanel):
 
@@ -50,12 +82,13 @@ class RPXUserDataPanel(UserDataPanel):
         rpx_schema = rpx_util.getSchema()
         rpx_field = form.FormFields(rpx_schema)
         #make field in right order
-        self.form_fields =  base_field.select('fullname') + \
-                            base_field.select('email') + \
-                            rpx_field + \
-                            base_field.omit('email').omit('fullname')
+        self.form_fields = base_field.select('fullname') + \
+                           base_field.select('email') + \
+                           rpx_field + \
+                           base_field.omit('email').omit('fullname')
         #import pdb; pdb.set_trace()
         self.form_fields['portrait'].custom_widget = FileUploadWidget
+
 
 class RPXUserDataConfiglet(RPXUserDataPanel):
     """ """

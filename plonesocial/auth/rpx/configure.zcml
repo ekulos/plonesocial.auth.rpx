@@ -7,7 +7,9 @@
     i18n_domain="plonesocial.auth.rpx">
 
     <five:registerPackage package="." initialize=".initialize" />
-	<include package="Products.CMFCore" file="permissions.zcml" />
+	  <include package="Products.CMFCore" file="permissions.zcml" />
+    <include package="plone.app.controlpanel" />
+
     <include package=".browser" />
     <include package=".portlets" />
     <include file="skins.zcml" />
@@ -22,11 +24,11 @@
       />
 
     <i18n:registerTranslations directory="locales"/>
-  
+
     <utility
 	    component=".providers.ProvidersVocabularyFactory"
 	    name="plonesocial.auth.rpx.Providers"
 	    />
 
-  
+
 </configure>

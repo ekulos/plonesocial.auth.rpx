@@ -20,21 +20,13 @@ class RPXCallback(BrowserView):
 
     def __call__(self):
 
-        # if self.portal_membership.isAnonymousUser():
-        #     session = self.context.session_data_manager.getSessionData()
-        #     creds = session.get('rpx_credentials', {})
-        #     if not creds:
-        #         msg = u'RPX authentication has failed. Try again later. You can still register login with your Plone username.'
-        #         util = self.context.plone_utils
-        #         util.addPortalMessage(msg, 'error')
-        #     self.request.RESPONSE.redirect('%s/@@rpx_register' % self.portal.absolute_url())
-
         session = self.context.session_data_manager.getSessionData()
         creds = session.get('rpx_credentials', {})
         if creds:
             member = self.portal_membership.getAuthenticatedMember()
-            if not member.getProperty('telephone'):
-                self.request.RESPONSE.redirect('%s/@@rpx_register' % self.portal.absolute_url())
+            if not member.getProperty('company'):
+                self.request.RESPONSE.redirect(
+                            '%s/@@rpx_register' % self.portal.absolute_url())
                 return
         url = self.request.get('came_from')
         if url is not None:
