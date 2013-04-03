@@ -50,12 +50,14 @@ class IRPXUserDataSchema(Interface):
     keywords = schema.TextLine(
         title=rpxMessageFactory(u'label_rpx_keywords', default=u'Keywords'),
         description=rpxMessageFactory(u'help_rpx_keywords',
-                      default=u"Enter keywords")
+                      default=u"Enter keywords"),
+        required=False,
     )
 
     multimedialinks = schema.TextLine(
         title=rpxMessageFactory(u'label_rpx_multimedialinks',
                                             default=u'Multimedia links'),
         description=rpxMessageFactory(u'help_rpx_multimedialinks',
-                      default=u"Enter Multimedia links")
+                      default=u"Enter Multimedia links"),
+        required=False,
     )
