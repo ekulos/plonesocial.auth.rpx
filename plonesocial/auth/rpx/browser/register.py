@@ -48,8 +48,15 @@ class RegistrationForm(BaseForm):
     @form.action(_(u'label_register', default=u'Register'),
                         validator='validate_registration', name=u'register')
     def action_join(self, action, data):
+        ms_tool = getToolByName(self, 'portal_membership')
         self.handle_join_success(data)
         credentials = self.getRPX()
+        member = ms_tool.getMemberById(data['username'])
+        rpx_ids = list(member.getProperty('rpx_identifier'))
+        rpx_ids.append(self.getRPX())
+        extra_properties = {}
+        extra_properties['rpx_identifier'] = rpx_ids
+        member.setMemberProperties(extra_properties)
         if credentials:
             return self.context.unrestrictedTraverse('rpx_registered')()
         else:
