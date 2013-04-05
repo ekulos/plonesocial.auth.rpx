@@ -56,6 +56,7 @@ class RegistrationForm(BaseForm):
         rpx_ids.append(self.getRPX())
         extra_properties = {}
         extra_properties['rpx_identifier'] = rpx_ids
+        extra_properties['password'] = data['password']
         member.setMemberProperties(extra_properties)
         if credentials:
             return self.context.unrestrictedTraverse('rpx_registered')()
@@ -63,11 +64,7 @@ class RegistrationForm(BaseForm):
             return self.context.unrestrictedTraverse('registered')()
 
     def handle_join_success(self, data):
-        registration = getToolByName(self.context, 'portal_registration')
         credentials = self.getRPX()
         if credentials:
             data['rpx_identifier'] = (credentials,)
-            password = data.get('password') or registration.generatePassword()
-            if isinstance(password, unicode):
-                password = password.encode('utf8')
         return super(RegistrationForm, self).handle_join_success(data)

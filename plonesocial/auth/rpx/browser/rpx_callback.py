@@ -1,7 +1,9 @@
 from zope.interface import implements, Interface
-
+from zope import event
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
+from Products.PlonePAS.events import UserLoggedInEvent
+from Products.PlonePAS.events import UserInitialLoginInEvent
 
 
 class IRPXCallback(Interface):
@@ -31,10 +33,18 @@ class RPXCallback(BrowserView):
             self.request.RESPONSE.redirect(
                             '%s/@@rpx_register' % self.portal.absolute_url())
         else:
+            member = self.portal_membership.getAuthenticatedMember()
+            if self.portal_membership.setLoginTimes():
+                event.notify(UserInitialLoginInEvent(member))
+            else:
+                event.notify(UserLoggedInEvent(member))
+
             self.portal_membership.createMemberArea()
             url = self.request.get('came_from')
             if url is not None:
-                self.request.RESPONSE.redirect(url[0])
+                if type(url) == list:
+                    url = url[0]
+                self.request.RESPONSE.redirect(url)
             else:
                 self.request.RESPONSE.redirect(self.portal.absolute_url())
 
