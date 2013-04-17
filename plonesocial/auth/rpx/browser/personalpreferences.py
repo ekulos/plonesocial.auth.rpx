@@ -11,59 +11,59 @@ from plonesocial.auth.rpx.browser.userdataschema import IRPXUserDataSchemaProvid
 
 class RPXUserDataPanelAdapter(AccountPanelSchemaAdapter):
 
-    def _getProperty(self, name):
-        """ PlonePAS encodes all unicode coming from PropertySheets.
-            Decode before sending to formlib. """
-        value = self.context.getProperty(name, '')
-        if value:
-            return safe_unicode(value)
-        return value
+    # def _getProperty(self, name):
+    #     """ PlonePAS encodes all unicode coming from PropertySheets.
+    #         Decode before sending to formlib. """
+    #     value = self.context.getProperty(name, '')
+    #     if value:
+    #         return safe_unicode(value)
+    #     return value
 
-    def get_company(self):
-        return self._getProperty('company')
+    # def get_company(self):
+    #     return self._getProperty('company')
 
-    def set_company(self, value):
-        if value is None:
-            value = ''
-        return self.context.setMemberProperties({'company': value})
+    # def set_company(self, value):
+    #     if value is None:
+    #         value = ''
+    #     return self.context.setMemberProperties({'company': value})
 
-    def get_companyrole(self):
-        return self._getProperty('companyrole')
+    # def get_companyrole(self):
+    #     return self._getProperty('companyrole')
 
-    def set_companyrole(self, value):
-        if value is None:
-            value = ''
-        return self.context.setMemberProperties({'companyrole': value})
+    # def set_companyrole(self, value):
+    #     if value is None:
+    #         value = ''
+    #     return self.context.setMemberProperties({'companyrole': value})
 
-    def get_research_area(self):
-        return self._getProperty('research_area')
+    # def get_research_area(self):
+    #     return self._getProperty('research_area')
 
-    def set_research_area(self, value):
-        if value is None:
-            value = ''
-        return self.context.setMemberProperties({'research_area': value})
+    # def set_research_area(self, value):
+    #     if value is None:
+    #         value = ''
+    #     return self.context.setMemberProperties({'research_area': value})
 
-    def get_keywords(self):
-        return self._getProperty('keywords')
+    # def get_keywords(self):
+    #     return self._getProperty('keywords')
 
-    def set_keywords(self, value):
-        if value is None:
-            value = ''
-        return self.context.setMemberProperties({'keywords': value})
+    # def set_keywords(self, value):
+    #     if value is None:
+    #         value = ''
+    #     return self.context.setMemberProperties({'keywords': value})
 
-    def get_multimedialinks(self):
-        return self._getProperty('multimedialinks')
+    # def get_multimedialinks(self):
+    #     return self._getProperty('multimedialinks')
 
-    def set_multimedialinks(self, value):
-        if value is None:
-            value = ''
-        return self.context.setMemberProperties({'multimedialinks': value})
+    # def set_multimedialinks(self, value):
+    #     if value is None:
+    #         value = ''
+    #     return self.context.setMemberProperties({'multimedialinks': value})
 
-    company = property(get_company, set_company)
-    companyrole = property(get_companyrole, set_companyrole)
-    research_area = property(get_research_area, set_research_area)
-    keywords = property(get_keywords, set_keywords)
-    multimedialinks = property(get_multimedialinks, set_multimedialinks)
+    # company = property(get_company, set_company)
+    # companyrole = property(get_companyrole, set_companyrole)
+    # research_area = property(get_research_area, set_research_area)
+    # keywords = property(get_keywords, set_keywords)
+    # multimedialinks = property(get_multimedialinks, set_multimedialinks)
 
 
 class RPXUserDataPanel(UserDataPanel):

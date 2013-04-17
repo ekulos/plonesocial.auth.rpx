@@ -56,7 +56,8 @@ class RegistrationForm(BaseForm):
         rpx_ids.append(self.getRPX())
         extra_properties = {}
         extra_properties['rpx_identifier'] = rpx_ids
-        extra_properties['password'] = data['password']
+        if 'password' in data:
+            extra_properties['password'] = data['password']
         member.setMemberProperties(extra_properties)
         if credentials:
             return self.context.unrestrictedTraverse('rpx_registered')()

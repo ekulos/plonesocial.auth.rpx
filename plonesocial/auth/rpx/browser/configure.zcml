@@ -51,7 +51,7 @@
         />
 
     <!-- RPX personal information view -->
-    <browser:page
+    <!-- <browser:page
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
         name="personal-information"
         class=".personalpreferences.RPXUserDataPanel"
@@ -74,7 +74,7 @@
       />
 
     <utility provides=".userdataschema.IRPXUserDataSchemaProvider"
-             factory=".userdataschema.RPXUserDataSchemaProvider"/>
+             factory=".userdataschema.RPXUserDataSchemaProvider"/> -->
 
     <!-- RPX-Callback View -->
     <browser:page
@@ -93,6 +93,7 @@
 		  permission="cmf.ManagePortal"
 		/>
     <adapter factory=".configlet.RPXControlPanelAdapter" />
+
 
 
 

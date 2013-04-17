@@ -11,11 +11,13 @@
  <property name="location" type="string"></property>
  <property name="description" type="text"></property>
  <property name="language" type="string"></property>
+ <!--
  <property name="company" type="string"></property>
  <property name="companyrole" type="string"></property>
  <property name="research_area" type="string"></property>
  <property name="keywords" type="string"></property>
  <property name="multimedialinks" type="string"></property>
+  -->
  <property name="ext_editor" type="boolean">False</property>
  <property name="wysiwyg_editor" type="string">Kupu</property>
  <property name="visible_ids" type="boolean">False</property>
