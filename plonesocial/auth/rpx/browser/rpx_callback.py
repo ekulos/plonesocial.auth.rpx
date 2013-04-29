@@ -46,7 +46,9 @@ class RPXCallback(BrowserView):
                     url = url[0]
                 self.request.RESPONSE.redirect(url)
             else:
-                self.request.RESPONSE.redirect(self.portal.absolute_url())
+                self.request.RESPONSE.redirect(
+                    '%s/login_next' % self.portal.absolute_url()
+                )
 
     @property
     def portal_membership(self):
