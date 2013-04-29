@@ -40,15 +40,22 @@ class RPXCallback(BrowserView):
             else:
                 event.notify(UserLoggedInEvent(member))
 
-            url = self.request.get('came_from')
-            if url is not None:
-                if type(url) == list:
-                    url = url[0]
-                self.request.RESPONSE.redirect(url)
-            else:
-                self.request.RESPONSE.redirect(
+
+            self.request.RESPONSE.redirect(
                     '%s/login_next' % self.portal.absolute_url()
-                )
+            )
+
+            return
+
+            # url = self.request.get('came_from')
+            # if url is not None:
+            #     if type(url) == list:
+            #         url = url[0]
+            #     self.request.RESPONSE.redirect(url)
+            # else:
+            #     self.request.RESPONSE.redirect(
+            #         '%s/login_next' % self.portal.absolute_url()
+            #     )
 
     @property
     def portal_membership(self):
