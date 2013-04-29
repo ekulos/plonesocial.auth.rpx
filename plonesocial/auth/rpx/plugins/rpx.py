@@ -53,9 +53,11 @@ class RPXPlugin(BasePlugin):
         token = request.form.get('token', None)
         creds = {}
         if token is not None:
-            session = self.session_data_manager.getSessionData()
+            # session = self.session_data_manager.getSessionData()
+            session = request.cookies
             creds = self.get_credentials_from_rpx(token)
-            session['rpx_credentials'] = creds
+            # session['rpx_credentials'] = creds
+            request.response.setCookie('rpx_credentials', creds)
         return creds
 
 

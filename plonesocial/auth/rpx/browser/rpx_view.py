@@ -1,5 +1,6 @@
 import urllib
 import urlparse
+import ast
 from zope.interface import implements, Interface
 from zope.component import queryUtility
 from plone.memoize.instance import memoize
@@ -125,10 +126,11 @@ class RPXView(BrowserView):
 
     @property
     def rpx_credentials(self):
-        session = self.context.session_data_manager.getSessionData(0)
+        # session = self.context.session_data_manager.getSessionData(0)
+        session = self.request.cookies
         if session is not None:
             creds = session.get('rpx_credentials', {})
-            return creds
+            return ast.literal_eval(creds)
         return {}
 
     @property

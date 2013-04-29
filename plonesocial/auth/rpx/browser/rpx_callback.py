@@ -22,7 +22,8 @@ class RPXCallback(BrowserView):
 
     def __call__(self):
         if self.portal_membership.isAnonymousUser():
-            session = self.context.session_data_manager.getSessionData()
+            # session = self.context.session_data_manager.getSessionData()
+            session = self.request.cookies
             creds = session.get('rpx_credentials', {})
             if not creds:
                 msg = (u'RPX authentication has failed. Try again later. '
