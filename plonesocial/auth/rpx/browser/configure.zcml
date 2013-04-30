@@ -10,16 +10,19 @@
     <browser:resource
         file="rpx.js"
         name="rpx.js"
+        layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
         />
 
     <browser:resource
         file="rpx.css"
         name="rpx.css"
+        layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
         />
 
     <browser:resourceDirectory
       name="plonesocial.auth.rpx.icons"
       directory="icons"
+      layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
       />
 
     <!-- uso di jbot per i template di portlets -->
@@ -27,12 +30,25 @@
       directory="./portlets"
       layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
 
+    <browser:jbot
+      directory="./override_templates"
+      layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
+
+    <browser:page
+      for="*"
+      permission="zope2.Public"
+      name="rehub-pageform.html"
+      template="pageform.pt"
+      layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
+      />
+
     <!-- RPX View -->
     <browser:page
         name="rpx_register"
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
         class=".register.RegistrationForm"
         permission="cmf.AddPortalMember"
+        layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
      />
 
     <browser:page
@@ -40,6 +56,7 @@
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
         permission="cmf.AddPortalMember"
         template="rpx_registered.pt"
+        layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
      />
 
     <browser:page
@@ -48,6 +65,7 @@
         class=".rpx_view.RPXView"
         allowed_interface=".rpx_view.IRPXView"
         permission="zope.Public"
+        layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
         />
 
     <!-- RPX personal information view -->
@@ -83,6 +101,7 @@
         class=".rpx_callback.RPXCallback"
         allowed_interface=".rpx_callback.IRPXCallback"
         permission="zope.Public"
+        layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
         />
 
 	  <!-- RPX configlet -->
@@ -91,6 +110,7 @@
 		  name="rpx_config"
 		  class=".configlet.RPXConfigurationForm"
 		  permission="cmf.ManagePortal"
+      layer="plonesocial.auth.rpx.interface.IRPXAuthLayer" />
 		/>
     <adapter factory=".configlet.RPXControlPanelAdapter" />
 
