@@ -114,6 +114,8 @@
 		/>
     <adapter factory=".configlet.RPXControlPanelAdapter" />
 
+    <subscriber for="Products.PlonePAS.events.UserLoggedOutEvent"
+                handler=".events.clear_extra_cookies_on_logout" />
 
 
 

@@ -16,15 +16,30 @@
 
         <div id="content">
             <tal:mailhost tal:condition="view/showForm">
-              <div metal:use-macro="context/rehub-pageform.html/form">
-                 <tal:came_from metal:fill-slot="extra_info">
-                   <input tal:define="came_from request/form/came_from|nothing"
-                          tal:condition="came_from"
-                          type="hidden"
-                          name="came_from"
-                          tal:attributes="value came_from" />
-                 </tal:came_from>
+              <div tal:condition="not: rpx_view/rpx_credentials">
+                <div metal:use-macro="context/rehub-pageform.html/form">
+                   <tal:came_from metal:fill-slot="extra_info">
+                     <input tal:define="came_from request/form/came_from|nothing"
+                            tal:condition="came_from"
+                            type="hidden"
+                            name="came_from"
+                            tal:attributes="value came_from" />
+                   </tal:came_from>
+                </div>
               </div>
+              <div tal:condition="rpx_view/rpx_credentials">
+                <div
+                     metal:use-macro="context/base-pageform.html/form">
+                   <tal:came_from metal:fill-slot="extra_info">
+                     <input tal:define="came_from request/form/came_from|nothing"
+                            tal:condition="came_from"
+                            type="hidden"
+                            name="came_from"
+                            tal:attributes="value came_from" />
+                   </tal:came_from>
+                </div>
+              </div>
+
             </tal:mailhost>
 
             <tal:nomailhost tal:condition="not:view/showForm">

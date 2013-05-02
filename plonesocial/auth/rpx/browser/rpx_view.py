@@ -130,7 +130,8 @@ class RPXView(BrowserView):
         session = self.request.cookies
         if session is not None:
             creds = session.get('rpx_credentials', {})
-            return ast.literal_eval(creds)
+            if creds:
+                return ast.literal_eval(creds)
         return {}
 
     @property
