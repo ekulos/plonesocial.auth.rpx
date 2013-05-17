@@ -41,8 +41,9 @@
         <div class="documentDescription" tal:content="view/description|nothing">Description</div>
 
         <div id="content-core">
-          <div id="register-container" class="row">
-            <div class="cell position-0 width-1:2">
+          <div id="register-container">
+            <div class="sixcol">
+            <div id="registration-form">
               <form action="." metal:define-macro="master"
                     tal:attributes="action request/URL;
                                     class string:kssattr-formname-${view/__name__}"
@@ -139,7 +140,7 @@
                     </fieldset>
 
               </form>
-
+</div>
 
               <script type="text/javascript"
                   tal:define="extra_script view/extra_script | nothing"

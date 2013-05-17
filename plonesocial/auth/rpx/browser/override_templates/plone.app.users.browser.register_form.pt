@@ -15,6 +15,7 @@
     <metal:body fill-slot="body" tal:define="rpx_view context/@@rpx_view;">
 
         <div id="content">
+
             <tal:mailhost tal:condition="view/showForm">
               <div tal:condition="not: rpx_view/rpx_credentials">
                 <div metal:use-macro="context/rehub-pageform.html/form">
