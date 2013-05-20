@@ -55,7 +55,7 @@
 
 			<div id="login-container" metal:define-macro="rpxlogin">
 				<div i18n:translate="login_form_orploneaccount" style="padding: 1em;">
-				    If you don't have an account from any of the available providers, you can also use a Plone account.
+				    If you don't have an account from any of the available providers, you can also use a user account.
 				</div>
 
 				<div class="sixcol">
@@ -69,7 +69,7 @@
 
 						    <fieldset id="login-form">
 
-						        <h2 i18n:translate="login_with_plone">Login with Plone</h2>
+						        <h2 i18n:translate="login_with_plone">Login</h2>
 								<br />
 
 						        <input type="hidden"
