@@ -109,7 +109,7 @@
                       	         span tag. It is often useful to set Invariant errors on the
                       		 fields they refer to. -->
                       	  </tal:comment>
-                                <div class="fieldErrorBox" tal:content="structure error">
+                                <div class="fieldErrorBox" tal:condition="python:error" tal:content="structure error">
                                   The Error
                                 </div>
                                 <div class="widget formlibInlineValidation" tal:content="structure widget">
